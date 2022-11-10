@@ -30,7 +30,7 @@ print("_"*80)
 print("EJERCICIO 2")
 print("_"*80)
 #Eliminamos las observaciones que contienen NA
-penguins_nona=penguins.dropna()
+penguins_nona = penguins.dropna()
 
 #Comprovamos si queda algun NA
 print(f"\n El conjunto penguins_nona tiene valores NA en las columnas: \n{penguins_nona.isna().any()}")
@@ -41,7 +41,7 @@ print("_"*80)
 print("EJERCICIO 3")
 print("_"*80)
 #Agrupamos los individuos por sexo con la funcion groupby
-penguins_bysex=penguins_nona.groupby("sex")
+penguins_bysex = penguins_nona.groupby("sex")
 
 #Usamos la funcion len para saber cuantos hay de cada sexo, descontando los que tenian NA
 n_female = len(penguins_bysex.groups["female"])
@@ -85,11 +85,24 @@ for name, group in penguins_bysex_byspecie:
 print("_"*80)
 
 ################################################################################
+#Ejercicio 5 (actualizacion miercoles)
+#Imprimimos la media de la longitud del pico por especies de los pinguinos hembra
+print("La longitud media de los picos de las hembras segun la especie es:")
+mean_bill_length_f=[]
+for name, group in penguins_bysex_byspecie:
+  if name[0] == "female":
+    print(name[1], end=": ")
+    #Guardamos los datos en una lista por si los necesitamos posteriormente
+    mean_bill_length_f.append(group["bill_length_mm"].mean())
+    print(group["bill_length_mm"].mean())
+print("_"*80)
+
+################################################################################
 #Ejercicio 6
 print("EJERCICIO 6")
 print("_"*80)
 #Creamos una lista que contenga el peso de los pinguinos en kg
-body_mass_kg= penguins_nona.body_mass_g / 1000
+body_mass_kg = penguins_nona.body_mass_g / 1000
 
 #Añadimos esta columna en la posicion de de body_mass_g
 penguins_nona.insert(loc=5, column="body_mass_kg", value=body_mass_kg)
