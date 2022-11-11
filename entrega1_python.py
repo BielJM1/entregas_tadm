@@ -1,6 +1,3 @@
-#Instalamos el paquete necesario para cargar los datos de pinguinos
-!pip install palmerpenguins
-
 #importamos las librerias necesarias
 import pandas as pd
 import numpy as np
